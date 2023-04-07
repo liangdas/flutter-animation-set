@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../animation_set.dart';
 import '../animator.dart';
@@ -32,7 +31,7 @@ class YYFadeButton extends StatelessWidget {
             serialList: [
               O(from: 0.2, to: 1.0),
               TY(from: 0.0, to: 10.0),
-              C(from: Colors.white, to: Colors.red[400]),
+              C(from: Colors.white, to: Colors.red.withOpacity(0.4)),
               B(
                 from: BorderRadius.circular(0.0),
                 to: BorderRadius.circular(10.0),

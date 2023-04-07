@@ -13,14 +13,12 @@ enum AnimationType {
 
 class AnimatorSet extends StatefulWidget {
   AnimatorSet({
-    Key key,
+    Key? key,
     this.debug = false,
-    this.child,
+    required this.child,
     this.animatorSet = const <Animator>[],
     this.animationType = AnimationType.repeat,
-  })  : assert(child != null),
-        assert(animatorSet != null),
-        super(key: key);
+  })  : super(key: key);
 
   final bool debug;
   final Widget child;
@@ -36,8 +34,8 @@ class AnimatorSet extends StatefulWidget {
 class AnimatorSetState extends State<AnimatorSet>
     with SingleTickerProviderStateMixin {
   int _duration = 0; //时间
-  AnimationController _controller;
-  AnimationType _animationType;
+  late AnimationController _controller;
+  late AnimationType _animationType;
 
   @override
   void initState() {
@@ -46,7 +44,7 @@ class AnimatorSetState extends State<AnimatorSet>
     _animationType = widget.animationType;
 
     for (var anim in widget.animatorSet) {
-      _duration += anim.duration;
+      _duration += anim.duration!;
     }
 
     _controller = AnimationController(
@@ -101,30 +99,30 @@ class AnimatedLogo extends StatelessWidget {
   ///opacityNotify：监听透明度变化，将正在变化的动画值作为opacityValue
   ///opacity：透明度动画集合
   ///opacityValue：最终显示的透明度
-  List<ValueNotifier<double>> opacityNotify = List()..length = 16;
-  List<Animation<double>> opacity = List()..length = 16;
-  double opacityValue;
+  List<ValueNotifier<double>?> opacityNotify = []..length = 16;
+  List<Animation<double>?> opacity = []..length = 16;
+  double? opacityValue;
 
-  Animation<double> width;
-  Animation<double> height;
-  Animation<EdgeInsets> padding;
-  Animation<BorderRadius> borderRadius;
-  Animation<Color> color;
-  List<Animation<double>> scaleX = [null, null, null, null];
-  List<Animation<double>> scaleY = [null, null, null, null];
-  List<Animation<double>> rotateX = [null, null, null, null];
-  List<Animation<double>> rotateY = [null, null, null, null];
-  List<Animation<double>> rotateZ = [null, null, null, null];
-  List<Animation<double>> transX = [null, null, null, null];
-  List<Animation<double>> transY = [null, null, null, null];
+  Animation<double>? width;
+  Animation<double>? height;
+  Animation<EdgeInsets>? padding;
+  Animation<BorderRadius?>? borderRadius;
+  Animation<Color?>? color;
+  List<Animation<double>?> scaleX = [null, null, null, null];
+  List<Animation<double>?> scaleY = [null, null, null, null];
+  List<Animation<double>?> rotateX = [null, null, null, null];
+  List<Animation<double>?> rotateY = [null, null, null, null];
+  List<Animation<double>?> rotateZ = [null, null, null, null];
+  List<Animation<double>?> transX = [null, null, null, null];
+  List<Animation<double>?> transY = [null, null, null, null];
 
   AnimatedLogo({
-    Key key,
-    this.debug,
-    this.child,
-    this.controller,
-    this.animatorSet,
-    this.duration,
+    Key? key,
+    this.debug=false,
+    required this.child,
+    required this.controller,
+    required this.animatorSet,
+    required this.duration,
   }) : super(key: key) {
     this._parseAnimation();
     this._initOpacityListener();
@@ -142,8 +140,8 @@ class AnimatedLogo extends StatelessWidget {
     double end = 0.0;
 
     for (var anim in animatorSet) {
-      start = anim.delay / duration + end; //延时+上次结束
-      end = start + anim.duration / duration; //上次开始+时长
+      start = anim.delay! / duration + end; //延时+上次结束
+      end = start + anim.duration! / duration; //上次开始+时长
 
       if (debug) {
         print("duration=" +
@@ -162,7 +160,7 @@ class AnimatedLogo extends StatelessWidget {
         ///并行动画处理
         List<Animator> serialList = anim.serialList;
         serialList.forEach((Animator anim2) {
-          double tempStart = start + anim.delay / duration;
+          double tempStart = start + anim.delay! / duration;
           _parseAnimation2(anim2, tempStart, end);
         });
       } else {
@@ -185,12 +183,9 @@ class AnimatedLogo extends StatelessWidget {
     ///默认的透明度，以第一个透明度动画的初始值为准
     opacityValue = opacity[0]?.value ?? 1.0;
     for (int i = 0; i < opacityNotify.length; i++) {
-      if (opacityNotify[i] != null) {
-        ///监听透明度变化
-        opacityNotify[i].addListener(() {
-          opacityValue = opacity[i].value;
-        });
-      }
+      opacityNotify[i]?.addListener(() {
+        opacityValue = opacity[i]?.value;
+      });
     }
   }
 
@@ -202,7 +197,7 @@ class AnimatedLogo extends StatelessWidget {
     );
   }
 
-  Widget _buildAnimationWidget(BuildContext context, Widget child) {
+  Widget _buildAnimationWidget(BuildContext context, Widget? child) {
     return Container(
       padding: padding?.value ?? EdgeInsets.all(0), // 内边距动画
       child: Transform(
@@ -235,7 +230,7 @@ class AnimatedLogo extends StatelessWidget {
               ..rotateZ(rotateZ[2]?.value ?? 0.0)
               ..rotateZ(rotateZ[3]?.value ?? 0.0),
             child: Opacity(
-              opacity: opacityValue,
+              opacity: opacityValue!,
               child: Container(
                 child: this.child,
                 width: width?.value ?? null,
@@ -327,8 +322,8 @@ class AnimatedLogo extends StatelessWidget {
             ),
           )..addListener(() {
               ///由于在播放完成后会回到初始值，需要过滤掉
-              if (opacity[i].value != anim.from) {
-                opacityNotify[i].value = opacity[i].value;
+              if (opacity[i]!=null&&opacity[i]!.value != anim.from) {
+                opacityNotify[i]?.value = opacity[i]!.value;
               }
             });
           break;

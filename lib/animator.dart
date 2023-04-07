@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 export 'package:flutter_animation_set/animator.dart';
 
 abstract class Animator<T> {
-  T from;
-  T to;
-  int duration;
-  int delay;
-  Curve curve;
+  T? from;
+  T? to;
+  int? duration;
+  int? delay;
+  Curve? curve;
 }
 
 class Serial extends Animator {
@@ -19,217 +19,217 @@ class Serial extends Animator {
     this.serialList = const <Animator>[],
   });
 
-  int duration;
-  int delay;
+  int? duration;
+  int? delay;
   List<Animator> serialList;
 }
 
 class W extends Animator<double> {
   W({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class H extends Animator<double> {
   H({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class P extends Animator<EdgeInsets> {
   P({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  EdgeInsets from;
-  EdgeInsets to;
-  int duration;
-  int delay;
-  Curve curve;
+  final EdgeInsets from;
+  final EdgeInsets to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class O extends Animator<double> {
   O({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class SX extends Animator<double> {
   SX({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class SY extends Animator<double> {
   SY({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class RX extends Animator<double> {
   RX({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class RY extends Animator<double> {
   RY({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class RZ extends Animator<double> {
   RZ({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class TX extends Animator<double> {
   TX({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class TY extends Animator<double> {
   TY({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  double from;
-  double to;
-  int duration;
-  int delay;
-  Curve curve;
+  final double from;
+  final double to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class C extends Animator<Color> {
   C({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  Color from;
-  Color to;
-  int duration;
-  int delay;
-  Curve curve;
+  final Color from;
+  final Color to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class B extends Animator<BorderRadius> {
   B({
-    this.from,
-    this.to,
+    required this.from,
+    required this.to,
     this.duration = 0,
     this.delay = 0,
     this.curve = Curves.linear,
   });
 
-  BorderRadius from;
-  BorderRadius to;
-  int duration;
-  int delay;
-  Curve curve;
+  final BorderRadius from;
+  final BorderRadius to;
+  final int duration;
+  final int delay;
+  final Curve curve;
 }
 
 class Delay extends Animator {
@@ -240,6 +240,6 @@ class Delay extends Animator {
     this.delay = 0,
   });
 
-  int duration;
-  int delay;
+  final int duration;
+  final int delay;
 }
